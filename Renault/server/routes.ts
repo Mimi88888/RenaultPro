@@ -1,8 +1,8 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { setupAuth } from "./auth";
-import { insertVehicleSchema, insertAppointmentSchema } from "@shared/schema";
+import { storage } from "./storage.ts";
+import { setupAuth } from "./auth.ts";
+import { insertVehicleSchema, insertAppointmentSchema } from "../shared/schema.ts";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {

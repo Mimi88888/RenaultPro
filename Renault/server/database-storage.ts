@@ -1,8 +1,8 @@
 import { and, eq, isNull, sql, like, desc, asc, or } from 'drizzle-orm';
-import { db } from './db';
-import * as schema from '../shared/schema';
-import { User, Vehicle, Garage, Appointment } from '@shared/schema';
-import type { IStorage } from './storage';
+import { db } from './db.ts';
+import * as schema from '../shared/schema.ts';
+import { User, Vehicle, Garage, Appointment } from '@shared/schema.ts';
+import type { IStorage } from './storage.ts';
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
 import pg from 'pg';

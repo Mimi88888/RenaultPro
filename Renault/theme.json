@@ -3,5 +3,6 @@
   "primary": "#001E50",
   "foreground": "#001E50",
   "appearance": "light",
-  "radius": 0.5
+  "radius": 0.5,
+  "declare module '@replit/vite-plugin-shadcn-theme-json'": "true"
 }
