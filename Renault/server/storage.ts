@@ -6,6 +6,7 @@ import {
 } from "@shared/schema";
 import createMemoryStore from "memorystore";
 import session from "express-session";
+import { DatabaseStorage } from "./database-storage.ts";
 
 // Interface for storage operations
 export interface IStorage {
@@ -325,4 +326,5 @@ export class MemStorage implements IStorage {
 }
 
 // For now, we're using MemStorage
-export const storage = new MemStorage();
+// Switch to Postgres-backed storage (Neon via Drizzle)
+export const storage = new DatabaseStorage();

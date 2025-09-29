@@ -32,7 +32,7 @@ export const insertUserSchema = createInsertSchema(users).pick({
 // Define the Vehicle model
 export const vehicles = pgTable("vehicles", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull(),
+  userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade", onUpdate: "cascade" }),
   make: text("make").notNull(),
   model: text("model").notNull(),
   year: integer("year").notNull(),
@@ -108,9 +108,9 @@ export const insertGarageSchema = createInsertSchema(garages).pick({
 // Define the Appointment model
 export const appointments = pgTable("appointments", {
   id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull(),
-  vehicleId: integer("vehicle_id").notNull(),
-  garageId: integer("garage_id").notNull(),
+  userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade", onUpdate: "cascade" }),
+  vehicleId: integer("vehicle_id").notNull().references(() => vehicles.id, { onDelete: "cascade", onUpdate: "cascade" }),
+  garageId: integer("garage_id").notNull().references(() => garages.id, { onDelete: "cascade", onUpdate: "cascade" }),
   serviceType: text("service_type").notNull(),
   date: timestamp("date").notNull(),
   status: text("status").default("scheduled").notNull(),

@@ -5,6 +5,7 @@ import { User, Vehicle, Garage, Appointment } from '@shared/schema.ts';
 import type { IStorage } from './storage.ts';
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
+import 'dotenv/config';
 import pg from 'pg';
 
 const PostgresSessionStore = connectPgSimple(session);
@@ -12,6 +13,7 @@ const PostgresSessionStore = connectPgSimple(session);
 // Initialize PostgreSQL connection pool for session store
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
 });
 
 export class DatabaseStorage implements IStorage {
