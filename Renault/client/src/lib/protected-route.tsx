@@ -1,34 +1,32 @@
+import React from "react";
 import { useAuth } from "@/hooks/use-auth";
 import { Loader2 } from "lucide-react";
-import { Redirect, Route, useLocation } from "wouter";
+import { Navigate, useLocation } from "react-router-dom";
 
 export function ProtectedRoute({
   path,
   component: Component,
 }: {
   path: string;
-  component: () => React.JSX.Element;
+  component: () => JSX.Element;
 }) {
   const { user, isLoading } = useAuth();
-  const [location] = useLocation();
+  const location = useLocation();
 
   if (isLoading) {
-    return (
-      <Route path={path}>
-        <div className="flex items-center justify-center min-h-screen bg-background">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        </div>
-      </Route>
+    return React.createElement(
+      "div",
+      { className: "flex items-center justify-center min-h-screen bg-background" },
+      React.createElement(Loader2, { className: "h-8 w-8 animate-spin text-primary" })
     );
   }
 
   if (!user) {
-    return (
-      <Route path={path}>
-        <Redirect to={`/auth?redirect=${encodeURIComponent(location)}`} />
-      </Route>
-    );
+    return React.createElement(Navigate, {
+      to: `/auth?redirect=${encodeURIComponent(location.pathname)}`,
+      replace: true,
+    });
   }
 
-  return <Route path={path} component={Component} />;
+  return React.createElement(Component);
 }

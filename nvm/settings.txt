@@ -1,0 +1,2 @@
+root: C:\Users\miryam\Desktop\S2\RenaultPro\nvm
+path: C:\nvm4w\nodejs

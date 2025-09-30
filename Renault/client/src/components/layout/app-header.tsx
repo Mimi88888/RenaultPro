@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/use-auth";
-import { useLocation } from "wouter";
+import { useNavigate } from "react-router-dom";
 import { Logo } from "@/components/ui/logo";
 
 type AppHeaderProps = {
@@ -18,7 +18,7 @@ type AppHeaderProps = {
 
 export function AppHeader({ className }: AppHeaderProps) {
   const { user, logoutMutation } = useAuth();
-  const [_, navigate] = useLocation();
+  const navigate = useNavigate();
   
   const handleLogout = () => {
     logoutMutation.mutate();
